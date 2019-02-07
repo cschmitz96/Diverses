@@ -5,38 +5,58 @@
 #include <QByteArray>
 #include <QDebug>
 
-void swim_left(QString fish_left, int gos){
+void swim_left(QString left_1, QString left_2, QString left_3, int gos){
     for(int steps =0; steps<gos; steps++){
         QString swim = "";
-        for(int to_go = gos; to_go > steps; to_go--){
-            swim.append(QString("  "));
-        }
-        swim.append(QString(fish_left));
-        for(int gone = 0; gone < steps; gone++){
-            swim.append(QString("  "));
+        QString left[] = {left_1, left_2, left_3};
+        int leng = sizeof(left)/sizeof(left[0]);
+        for( int a = 0; a < leng; a++){
+            for(int to_go = gos; to_go > steps; to_go--){
+                swim.append(QString("     "));
+            }
+            swim.append(QString(left[a]));
+            for(int gone = 0; gone < steps; gone++){
+                swim.append(QString("     "));
+            }
+            if(a + 1 == leng){
+                swim.append(QString(""));
+            }
+            else{
+                swim.append(QString("\n"));
+            }
         }
         QString swims = QString("%1").arg(swim);
         const char *str;
         QByteArray ba;
-        ba = swims.toLatin1();
+        ba = swims.toUtf8();
         str = ba.data();
         qDebug() << str;
      }
 }
-void swim_right(QString fish_right, int gos){
+void swim_right(QString right_1, QString right_2, QString right_3, int gos){
     for(int steps =0; steps<gos; steps++){
         QString swim = "";
-        for(int gone = 0; gone < steps; gone++){
-            swim.append(QString("  "));
-        }
-        swim.append(QString(fish_right));
-        for(int to_go = gos; to_go > steps; to_go--){
-            swim.append(QString("  "));
+        QString right[] = {right_1, right_2, right_3};
+        int leng = sizeof(right)/sizeof(right[0]);
+        for( int a = 0; a < leng; a++){
+            for(int gone = 0; gone < steps; gone++){
+                swim.append(QString("     "));
+            }
+            swim.append(QString(right[a]));
+            for(int to_go = gos; to_go > steps; to_go--){
+                swim.append(QString("     "));
+            }
+            if(a + 1 == leng){
+                swim.append(QString(""));
+            }
+            else{
+                swim.append(QString("\n"));
+            }
         }
         QString swims = QString("%1").arg(swim);
         const char *str;
         QByteArray ba;
-        ba = swims.toLatin1();
+        ba = swims.toUtf8();
         str = ba.data();
         qDebug() << str;
     }
@@ -48,20 +68,21 @@ int main(int argc, char **argv)
     srand (time(NULL));
     QApplication application(argc, argv);
     QMainWindow mainWindow;
-    QString fish_left = "<><";
-    QString fish_right= "><>";
+    QString fish_left_1 = "  .-=-.   ";
+    QString fish_left_2 = " (°    >< ";
+    QString fish_left_3 = "  `-=-'   ";
+    QString fish_right_1 ="   .-=-.  ";
+    QString fish_right_2= " ><    °) ";
+    QString fish_right_3= "   '-=-´  ";
     int swims = rand() %5;
+
     int r;
-    int prev_r_left=-100;
-    int prev_r_right=100;
-    int stop = 1;
     r = rand() %20;
     for(int i =0; i <= swims; i++){
-        swim_left(fish_left, r);
+        swim_left(fish_left_1, fish_left_2, fish_left_3, r);
         r = rand() %20;
-        swim_right(fish_right, r);
+        swim_right(fish_right_1, fish_right_2, fish_right_3, r);
         r= r-1;
     }
-
 }
 
