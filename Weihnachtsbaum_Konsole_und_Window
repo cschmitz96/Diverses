@@ -1,0 +1,72 @@
+#include <QLabel>
+#include <QMainWindow>
+#include <QApplication>
+#include <QString>
+#include <QByteArray>
+#include <QDebug>
+int main(int argc, char **argv)
+{
+    int rows = 8;
+    int count = 2;
+    int r;
+    int q;
+    srand (time(NULL));
+    QApplication application(argc, argv);
+    QMainWindow mainWindow;
+    QLabel *label = new QLabel(&mainWindow);
+    QString baum = "";
+    for( int row = rows; row > 0; row = row - 1 ) {
+
+        for( int column = row - 1; column > 0; column = column -1 ){
+             baum.append(QString(" "));
+        }
+        int prev_r;
+        prev_r = 4;
+        for( int column = 1; column < count; column = column +1){
+            if (row == rows){
+                baum.append(QString("X"));
+            }
+            else{
+                r = rand() % 3;
+                if( r < 2){
+                    if (prev_r < 2){
+                        baum.append(QString("*"));
+                        prev_r = 4;
+                    }
+                    else{
+                        q = rand() % 10;
+                        if( q < 4){
+                            baum.append(QString("o"));
+                        }
+                        else{
+                            baum.append(QString("i"));
+                       }
+                       prev_r = r;
+                    }
+                }
+                else{
+                    baum.append(QString("*"));
+                }
+
+           }
+        }
+        baum.append(QString("\n"));
+        count = count +2;
+    }
+    for( int column = rows -2; column > 0; column = column - 1){
+        baum.append(QString(" "));
+    }
+    baum.append(QString("|_|"));
+
+    QString text = QString("%1").arg(baum);
+    const char *str;
+    QByteArray ba;
+    ba = text.toLatin1();
+    str = ba.data();
+    label->resize(120, 200);
+    label->setText(str);
+    mainWindow.show();
+    qDebug() << str;
+    return application.exec();
+}
+

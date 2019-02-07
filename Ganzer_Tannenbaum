@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int rows = 8;
+    int count = 1;
+    for( int row = rows; row > 0; row = row - 1 ) {
+
+        for( int column = row - 1; column > 0; column = column -1 ){
+            cout << " ";
+        }
+        for( int column = 1; column < count; column = column +1){
+            cout << "**";
+        }
+    cout << "*" << endl;
+    count = count +1;
+    }
+    for( int column = rows -2; column > 0; column = column - 1){
+        cout << " ";
+    }
+    cout << "|_|" << endl;
+    return 0;
+}

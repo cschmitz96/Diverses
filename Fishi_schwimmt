@@ -1,0 +1,67 @@
+#include <QLabel>
+#include <QMainWindow>
+#include <QApplication>
+#include <QString>
+#include <QByteArray>
+#include <QDebug>
+
+void swim_left(QString fish_left, int gos){
+    for(int steps =0; steps<gos; steps++){
+        QString swim = "";
+        for(int to_go = gos; to_go > steps; to_go--){
+            swim.append(QString("  "));
+        }
+        swim.append(QString(fish_left));
+        for(int gone = 0; gone < steps; gone++){
+            swim.append(QString("  "));
+        }
+        QString swims = QString("%1").arg(swim);
+        const char *str;
+        QByteArray ba;
+        ba = swims.toLatin1();
+        str = ba.data();
+        qDebug() << str;
+     }
+}
+void swim_right(QString fish_right, int gos){
+    for(int steps =0; steps<gos; steps++){
+        QString swim = "";
+        for(int gone = 0; gone < steps; gone++){
+            swim.append(QString("  "));
+        }
+        swim.append(QString(fish_right));
+        for(int to_go = gos; to_go > steps; to_go--){
+            swim.append(QString("  "));
+        }
+        QString swims = QString("%1").arg(swim);
+        const char *str;
+        QByteArray ba;
+        ba = swims.toLatin1();
+        str = ba.data();
+        qDebug() << str;
+    }
+}
+
+int main(int argc, char **argv)
+{
+
+    srand (time(NULL));
+    QApplication application(argc, argv);
+    QMainWindow mainWindow;
+    QString fish_left = "<><";
+    QString fish_right= "><>";
+    int swims = rand() %5;
+    int r;
+    int prev_r_left=-100;
+    int prev_r_right=100;
+    int stop = 1;
+    r = rand() %20;
+    for(int i =0; i <= swims; i++){
+        swim_left(fish_left, r);
+        r = rand() %20;
+        swim_right(fish_right, r);
+        r= r-1;
+    }
+
+}
+

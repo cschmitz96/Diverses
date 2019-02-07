@@ -1,0 +1,57 @@
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+
+using namespace std;
+int main()
+{
+    int rows = 12;
+    int count = 2;
+    int r;
+    int q;
+    srand (time(NULL));
+    for( int row = rows; row > 0; row = row - 1 ) {
+
+        for( int column = row - 1; column > 0; column = column -1 ){
+            cout << " ";
+        }
+        int prev_r;
+        prev_r = 4;
+        for( int column = 1; column < count; column = column +1){
+            if (row == rows){
+                cout << "X";
+            }
+            else{
+                r = rand() % 3;
+                if( r < 2){
+                    if (prev_r < 2){
+                        cout << "*";
+                        prev_r = 4;
+                    }
+                    else{
+                        q = rand() % 10;
+                        if( q < 4){
+                            cout << "i";
+                        }
+                        else{
+                            cout << "o";
+                       }
+                       prev_r = r;
+                    }
+                }
+                else{
+                    cout << "*";
+                }
+
+           }
+        }
+        cout << endl;
+        count = count +2;
+    }
+    for( int column = rows -2; column > 0; column = column - 1){
+        cout << " ";
+    }
+    cout << "|_|" << endl;
+
+
+}
