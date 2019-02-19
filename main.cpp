@@ -11,6 +11,7 @@ void delay()
     QTime dieTime= QTime::currentTime().addSecs(1);
     while (QTime::currentTime() < dieTime)
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+
 }
 
 QString create_fish_left(QString left[], int steps, int gos){
