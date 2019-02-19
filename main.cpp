@@ -11,16 +11,23 @@ void delay()
     QTime dieTime= QTime::currentTime().addSecs(1);
     while (QTime::currentTime() < dieTime)
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
-
 }
 
-QString create_fish_left(QString left[], int steps, int gos){
+QString create_fish_left(QStringList left, int steps, int gos){
     QString swim = "";
-    int leng = 3;
-//    int leng = left.length();
+    int leng = left.length();
     for( int a = 0; a < leng; a++){
         for(int to_go = gos; to_go > steps; to_go--){
             swim.append(QString("     "));
+        }
+        if(a == 2){
+            swim.append(QString("  o"));
+        }
+        else{
+            swim.append(QString("   "));
+        }
+        if(a<2){
+//            random_Bubble();
         }
         swim.append(QString(left[a]));
         for(int gone = 0; gone < steps; gone++){
@@ -36,14 +43,23 @@ QString create_fish_left(QString left[], int steps, int gos){
     return swim;
 }
 
-QString create_fish_right(QString right[], int steps, int gos){
+QString create_fish_right(QStringList right, int steps, int gos){
     QString swim = "";
-    int leng = 3;
+    int leng = right.length();
     for( int a = 0; a < leng; a++){
         for(int gone = 0; gone < steps; gone++){
             swim.append(QString("     "));
         }
         swim.append(QString(right[a]));
+        if(a == 2){
+            swim.append(QString("o  "));
+        }
+        else{
+            swim.append(QString("   "));
+        }
+        if(a<2){
+//            random_Bubble();
+        }
         for(int to_go = gos; to_go > steps; to_go--){
             swim.append(QString("     "));
         }
@@ -57,9 +73,15 @@ QString create_fish_right(QString right[], int steps, int gos){
     return swim;
 }
 
-void swim_left(QString left[], int gos){
+void swim(QStringList fish, int gos, bool right){
     for(int steps =0; steps<gos; steps++){
-        QString swim = create_fish_left(left, steps, gos);
+        QString swim;
+        if(right){
+            swim = create_fish_right(fish, steps, gos);
+        }
+        else{
+            swim = create_fish_left(fish, steps, gos);
+        }
         QString swims = QString("%1").arg(swim);
         const char *str;
         QByteArray ba;
@@ -72,20 +94,6 @@ void swim_left(QString left[], int gos){
      }
 }
 
-void swim_right(QString right[], int gos){
-    for(int steps =0; steps<gos; steps++){
-        QString swim = create_fish_right(right, steps, gos);
-        QString swims = QString("%1").arg(swim);
-        const char *str;
-        QByteArray ba;
-        ba = swims.toLatin1();
-        str = ba.data();
-        qDebug() << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-        qDebug() << str;
-        delay();
-
-    }
-}
 
 int main(int argc, char **argv)
 {
@@ -93,24 +101,30 @@ int main(int argc, char **argv)
     srand (time(NULL));
 //    QApplication application(argc, argv);
 //    QMainWindow mainWindow;
-    QString fish_left_1 = " _____/(_____/ ";
-    QString fish_left_2 = " >'__ ____v--\\ ";
-    QString fish_left_3 = "    \\(         ";
-    QString fish_right_1 =" \\_____)\\_____ ";
-    QString fish_right_2= " /--v____ __'< ";
-    QString fish_right_3= "         )/    ";
-    QString left[3] = {fish_left_1, fish_left_2, fish_left_3};
-    QString right[3] = {fish_right_1, fish_right_2, fish_right_3};
+    QString fish_left_1 = "      .       ";
+    QString fish_left_2 = "_____/(_____/ ";
+    QString fish_left_3 = ">'__ ____v--\\ ";
+    QString fish_left_4 = "   \\(         ";
+    QString fish_left_5 = "    '         ";
 
+    QString fish_right_1= "       .      ";
+    QString fish_right_2 =" \\_____)\\_____";
+    QString fish_right_3= " /--v____ __'<";
+    QString fish_right_4= "         )/   ";
+    QString fish_right_5= "         '    ";
+
+
+    QStringList left = {fish_left_1, fish_left_2, fish_left_3, fish_left_4, fish_left_5};
+    QStringList right = {fish_right_1, fish_right_2, fish_right_3, fish_right_4, fish_right_5};
 
     int swims = rand() %5;
 
     int r;
     r = rand() %20;
     for(int i =0; i <= swims; i++){
-        swim_left(left, r);
+        swim(left, r, false);
         r = rand() %20;
-        swim_right(right, r);
+        swim(right, r, true);
         r= r-1;
     }
 }
