@@ -19,7 +19,7 @@ int *adressY;
 
 //Methods
 void initialize();
-boolean logStats();
+bool logStats();
 void convince(int personPosition);
 int mod(int a, int b);
 void outputGrid();
@@ -158,7 +158,7 @@ void outputGrid() {
 //    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),124);
 }
 
-boolean logStats() {
+bool logStats() {
     double relativeParty[partyLength] = {0};
     int absoluteParty[partyLength] = {0};
     for (int peopleCount = 0; peopleCount < population; peopleCount++) {
