@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
         if(inputPopulation == -1){
             break;
         }
+//        string inputParty[3] = {" red ", "black", "  g  "};
         string inputParty[2] = {" red ", "black"};
         bool check = checkSquare(inputPopulation);
         if(!check){
@@ -55,9 +56,14 @@ int main(int argc, char *argv[])
 
             initialize();
             int run_count;
-            int outputRuns = 10000;
+            int outputRuns;
+            int sleepSpeed;
             cout << "Enter how many runs you want to do or 1 if you want to play till somone wins" << endl;
             cin >> run_count;
+            cout << "Enter after how many runs you want an output  (1000 - 10000 recommended)" << endl;
+            cin >> outputRuns;
+            cout << "Enter how long should be the break after an output (1000 = 1sec)" << endl;
+            cin >> sleepSpeed;
             if(run_count == 1){
                 for (int i = 0; true ; i++) {
                     convince(rand() % population);
@@ -67,13 +73,11 @@ int main(int argc, char *argv[])
                         if (logStats()) {
                             break;
                         };
-                        Sleep(200);
+                        Sleep(sleepSpeed);
                     }
                 }
             }
             else{
-                cout << "Enter after how many runs you want an output" << endl;
-                cin >> outputRuns;
                 for (int i = 0; i<run_count ; i++) {
                     convince(rand() % population);
                     if(i % outputRuns == 0){
@@ -82,7 +86,7 @@ int main(int argc, char *argv[])
                         if (logStats()) {
                             break;
                         };
-                        Sleep(500);
+                        Sleep(sleepSpeed);
                     }
                 }
             }
@@ -175,10 +179,7 @@ boolean logStats() {
             cout << party[i] << " has Won!!!" << endl;
             return true;
         }
-
     }
-
     cout << "----------------------------" << endl;
-
     return false;
 }
