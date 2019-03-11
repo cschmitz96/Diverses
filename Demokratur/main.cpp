@@ -28,7 +28,7 @@ bool checkSquare(int input);
 int main(int argc, char *argv[])
 {
     // to make rand() work
-    srand (time(NULL));
+    srand (time(nullptr));
 
     //Inputs
     while(1){
