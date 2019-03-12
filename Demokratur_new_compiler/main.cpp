@@ -25,7 +25,7 @@ int mod(int a, int b);
 void outputGrid();
 bool checkSquare(int input);
 
-int main(int argc, char *argv[])
+int main()
 {
     // to make rand() work
     srand (time(nullptr));
@@ -146,16 +146,24 @@ int mod(int a, int b)
 { return (a%b+b)%b; }
 
 void outputGrid() {
-    string output = "";
     for (int i = 0; i < population; i++) {
-        output.append(party[people[i]] + " ");
-        if ((i + 1) % populationSqrt == 0) {
-            output.append("\n");
-        }
+        if(party[people[i]] == party[0]){
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),124);
+            cout << party[people[i]] + " ";
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
 
+        }
+        if(party[people[i]] == party[1])
+        {
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),112);
+            cout << party[people[i]] + " ";
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),7);
+        }
+        if ((i + 1) % populationSqrt == 0) {
+        cout << "\n";
+        }
     }
-    cout << output;
-//    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),124);
+
 }
 
 bool logStats() {
@@ -177,6 +185,7 @@ bool logStats() {
         if ((int)absoluteParty[i] == population) {
             cout << "----------------------------" << endl;
             cout << party[i] << " has Won!!!" << endl;
+
             return true;
         }
     }
