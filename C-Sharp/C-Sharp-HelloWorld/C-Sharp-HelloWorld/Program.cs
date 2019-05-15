@@ -10,14 +10,16 @@ namespace C_Sharp_HelloWorld
         private int populationSqrt;
 
         private int convinceCount;
-        private int sleepSpeed = 50;
-        private int outputRuns = 10000;
+        private int sleepSpeed;
+        private int outputRuns;
 
         //Konstruktor
-        public GameLogic(int inputPopulation, string[] inputParties, int mode)
+        public GameLogic(int inputPopulation, string[] inputParties, int mode, int newSleepSpeed, int newOutputRuns)
         {
             Random random = new Random();
 
+            sleepSpeed = newSleepSpeed;
+            outputRuns = newOutputRuns;
             population = inputPopulation;
             populationSqrt = (int)Math.Sqrt(population);
             //initialisation of Party Array
@@ -231,7 +233,10 @@ namespace C_Sharp_HelloWorld
         {
             int population = 400;
             string[] parties = {"AAA", "___"};
-            GameLogic game = new GameLogic(population, parties, 0);
+            int sleepSpeed = 50;
+            int outputRuns = 10000;
+            //Population, wie viele Partys, Modus des Personen arrays, Pause zwischen den Outputs, nach wie vielen Runs Ausgegeben werden soll
+            GameLogic game = new GameLogic(population, parties, 0, sleepSpeed, outputRuns);
             game.gameLoop();
         }
     }
