@@ -1,6 +1,4 @@
 ﻿using System;
-//System.ConsoleColor[] test = { ConsoleColor.Green, ConsoleColor.Blue };
-//Console.ForegroundColor = test[1];
 
 namespace C_Sharp_HelloWorld
 {
