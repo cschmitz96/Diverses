@@ -4,18 +4,17 @@ namespace C_Sharp_HelloWorld
 {
     public class GameLogic
     {
-        public Person[] people;
-        public Party[] parties;
-        public int numberOfParties;
-        public int population;
-        public int populationSqrt;
+        private Person[] people;
+        private Party[] parties;
+        private int population;
+        private int populationSqrt;
 
-        public int convinceCount;
-        public int sleepSpeed = 50;
-        public int outputRuns = 10000;
+        private int convinceCount;
+        private int sleepSpeed = 50;
+        private int outputRuns = 10000;
 
         //Konstruktor
-        public GameLogic(int inputPopulation, string[] inputParties)
+        public GameLogic(int inputPopulation, string[] inputParties, int mode)
         {
             Random random = new Random();
 
@@ -25,28 +24,51 @@ namespace C_Sharp_HelloWorld
             parties = new Party[inputParties.Length];
             for (int i=0; i<inputParties.Length; i++)
             {
-                parties[i] = new Party();
-                parties[i].setName(inputParties[i]);
-                parties[i].setColor(0);
+                parties[i] = new Party(inputParties[i]);
             }
 
             //initialisation of people Array
+            if (mode == 0)
+            {
+                initializeRandomArray();
+            }
+            else if (mode == 1)
+            {
+                initializeConstructedArray();
+            }
+        }
+        public void initializeRandomArray()
+        {
+            Random random = new Random();
+
             people = new Person[population];
-            for (int i=0; i<population; i++)
+            for (int i = 0; i < population; i++)
             {
                 int randparty = random.Next(parties.Length);
-                people[i] = new Person();
-                people[i].setIndex(i);
-                people[i].setParty(parties[randparty]);
+                people[i] = new Person(i, parties[randparty]);
             }
         }
 
+        public void initializeConstructedArray()
+        {
+            people = new Person[population];
+            int equalPart = population / parties.Length;
+            int temp = -1;
+            for(int i = 0; i < population; i++)
+            {
+                if (i % equalPart == 0)
+                {
+                    temp++;
+                }
+                people[i] = new Person(i, parties[temp]);
+            }
+        }
         public void outputGrid()
         {
             string output = "";
             for (int i = 0; i < population; i++)
             {
-                output = output + people[i].getParty().name + " ";
+                output = output + people[i].getParty().getName() + " ";
                 if ((i + 1) % populationSqrt == 0)
                 {
                     output = output + "\n";
@@ -63,7 +85,7 @@ namespace C_Sharp_HelloWorld
             {
                 for (int i = 0; i < parties.Length; i++)
                 {
-                    if (people[peoplecount].getParty().name == parties[i].name)
+                    if (people[peoplecount].getParty().getName() == parties[i].getName())
                     {
                         absoluteparty[i] += 1;
                     }
@@ -74,7 +96,7 @@ namespace C_Sharp_HelloWorld
             for (int i = 0; i < absoluteparty.Length; i++)
             {
                 relativeparty[i] = (double)absoluteparty[i] / ((double)population / (double)100);
-                Console.WriteLine(parties[i].name + "   " + absoluteparty[i] + "   " + relativeparty[i] + "%");
+                Console.WriteLine(parties[i].getName() + "   " + absoluteparty[i] + "   " + relativeparty[i] + "%");
             }
 
             for (int i = 0; i < absoluteparty.Length; i++)
@@ -82,7 +104,7 @@ namespace C_Sharp_HelloWorld
                 if ((int)absoluteparty[i] == population)
                 {
                     Console.WriteLine("----------------------------");
-                    Console.WriteLine(parties[i].name + "  has won!!!");
+                    Console.WriteLine(parties[i].getName() + "  has won!!!");
                     Console.WriteLine("nach insgesamt  " + convinceCount + "  überzeugungen");
                     return true;
                 }
@@ -116,12 +138,13 @@ namespace C_Sharp_HelloWorld
         private int index;
         private Party party;
 
-        //getter und setter Methoden
-        public void setIndex(int newIndex)
+        //Konstruktor
+        public Person(int newIndex, Party newParty)
         {
             index = newIndex;
+            party = newParty;
         }
-
+        //getter und setter Methoden
         public void setParty(Party newParty)
         {
             party = newParty;
@@ -185,21 +208,21 @@ namespace C_Sharp_HelloWorld
 
     public class Party
     {
-        public string name;
-        public int color;
-        public Party()
-        {
-            name = default;
-            color = 0;
-        }
-        public void setName(string newName)
+        private string name;
+        private int color;
+        //Konstruktor
+        public Party(string newName)
         {
             name = newName;
+            color = 0;
         }
-
-        public void setColor(int newColor)
+        public string getName()
         {
-            color = newColor;
+            return name;
+        }
+        public int getColor()
+        {
+            return color;
         }
     }
     public class HelloWorld
@@ -208,7 +231,7 @@ namespace C_Sharp_HelloWorld
         {
             int population = 400;
             string[] parties = {"AAA", "___"};
-            GameLogic game = new GameLogic(population, parties);
+            GameLogic game = new GameLogic(population, parties, 0);
             game.gameLoop();
         }
     }
