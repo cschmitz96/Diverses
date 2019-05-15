@@ -167,7 +167,7 @@ bool logStats() {
             return true;
         }
     }
-    cout << "Überzeugungen: " << convinceCount << endl;
+    cout << "ï¿½berzeugungen: " << convinceCount << endl;
     cout << "----------------------------" << endl;
     return false;
 }
