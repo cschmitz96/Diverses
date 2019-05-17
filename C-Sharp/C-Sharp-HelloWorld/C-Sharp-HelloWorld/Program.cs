@@ -52,7 +52,7 @@ namespace C_Sharp_HelloWorld
                 people[i] = new Person(i, parties[randparty]);
             }
         }
-
+        
         public void initializeConstructedArray()
         {
             people = new Person[population];
@@ -178,11 +178,17 @@ namespace C_Sharp_HelloWorld
         {
             return party;
         }
+        public int getIndex()
+        {
+            return index;
+        }
 
         //actual Methods
         public void convince(int population, Person[] people)
         {
-            Neighbour neighbour = new Neighbour();
+            Neighbour neighbour;
+            // declaration wich subclass shell be used
+            neighbour = new NeighbourKreutz();
             Random random = new Random();
             int position = neighbour.findNeighbour(index, population);
             talk(position, people);
@@ -199,14 +205,59 @@ namespace C_Sharp_HelloWorld
         }
     }
 
-    public class Neighbour
+    public abstract class Neighbour
     {
-        public int findNeighbour(int personIndex, int population)
+        public int position;
+        public abstract int findNeighbour(int personIndex, int population);
+
+        public int mod(int a, int b)
+        {
+            return (a % b + b) % b;
+        }
+    }
+
+    public class NeighbourX : Neighbour
+    {
+        public override int findNeighbour(int personIndex, int population)
+        {
+            Random random = new Random();
+            int populationSqrt = (int)Math.Sqrt(population);
+            position = -1;
+            while (position < 0 || position > 399)
+            {
+                int rand = random.Next(4);
+                switch (rand)
+                {
+                    case 0:
+                        //left top
+                        position = personIndex - (populationSqrt + 1);
+                        break;
+                    case 1:
+                        //right top
+                        position = personIndex - (populationSqrt - 1);
+                        break;
+                    case 2:
+                        //left bottom
+                        position = personIndex + (populationSqrt - 1);
+                        break;
+                    case 3:
+                        //right bottom
+                        position = personIndex + (populationSqrt + 1);
+                        break;
+                }
+            }
+            return position;
+
+        }
+    }
+
+    public class NeighbourKreutz : Neighbour
+    {
+        public override int findNeighbour(int personIndex, int population)
         {
             Random random = new Random();
             int populationSqrt = (int)Math.Sqrt(population);
             int rand = random.Next(4);
-            int position = -1;
             switch (rand)
             {
                 case 0:
@@ -227,11 +278,6 @@ namespace C_Sharp_HelloWorld
                     break;
             }
             return position;
-        }
-
-        public int mod(int a, int b)
-        {
-            return (a % b + b) % b;
         }
     }
 
@@ -259,12 +305,12 @@ namespace C_Sharp_HelloWorld
         static void Main(string[] args)
         {
             int population = 400;
-            string[] parties = {"O", "X", "I"};
+            string[] parties = {"X ", "  "};
             System.ConsoleColor[] colors = { ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Blue};
-            int sleepSpeed = 50;
+            int sleepSpeed = 10;
             int outputRuns = 5000;
             //Population, Array der Partein, Modus des Personen arrays, Pause zwischen den Outputs, nach wie vielen Runs Ausgegeben werden soll, Farben der PArtein, Farbmodus
-            GameLogic game = new GameLogic(population, parties, 0, sleepSpeed, outputRuns, colors, 1);
+            GameLogic game = new GameLogic(population, parties, 0, sleepSpeed, outputRuns, colors, 0);
             game.gameLoop();
         }
     }
