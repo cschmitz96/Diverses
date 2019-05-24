@@ -85,8 +85,9 @@ namespace C_Sharp_HelloWorld
         {
             for(int i = 0; i < population; i++)
             {
-                Console.ForegroundColor = people[i].getParty().getColor();
-                Console.Write(people[i].getParty().getName() + " ");
+                Console.BackgroundColor = people[i].getParty().getColor();
+                Console.Write("   ");
+                Console.BackgroundColor = ConsoleColor.Black;
                 if((i+1) % populationSqrt == 0)
                 {
                     Console.WriteLine("");
@@ -114,7 +115,11 @@ namespace C_Sharp_HelloWorld
             for (int i = 0; i < absoluteparty.Length; i++)
             {
                 relativeparty[i] = (double)absoluteparty[i] / ((double)population / (double)100);
-                Console.WriteLine(parties[i].getName() + "   " + absoluteparty[i] + "   " + relativeparty[i] + "%");
+                Console.Write(parties[i].getName());
+                Console.BackgroundColor = parties[i].getColor();
+                Console.Write("  ");
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.WriteLine( "   " + absoluteparty[i] + "   " + relativeparty[i] + "%");
             }
 
             for (int i = 0; i < absoluteparty.Length; i++)
@@ -305,12 +310,12 @@ namespace C_Sharp_HelloWorld
         static void Main(string[] args)
         {
             int population = 400;
-            string[] parties = {"X ", "  "};
+            string[] parties = {"A ", "B "};
             System.ConsoleColor[] colors = { ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Blue};
             int sleepSpeed = 10;
             int outputRuns = 5000;
             //Population, Array der Partein, Modus des Personen arrays, Pause zwischen den Outputs, nach wie vielen Runs Ausgegeben werden soll, Farben der PArtein, Farbmodus
-            GameLogic game = new GameLogic(population, parties, 0, sleepSpeed, outputRuns, colors, 0);
+            GameLogic game = new GameLogic(population, parties, 0, sleepSpeed, outputRuns, colors, 1);
             game.gameLoop();
         }
     }
