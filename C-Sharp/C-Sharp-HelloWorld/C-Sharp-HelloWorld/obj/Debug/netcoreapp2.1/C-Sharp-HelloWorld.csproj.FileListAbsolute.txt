@@ -1,0 +1,11 @@
+C:\Users\cschmitz\Documents\cschmitz_Dokumente\Diverses\C-Sharp\C-Sharp-HelloWorld\C-Sharp-HelloWorld\bin\Debug\netcoreapp2.1\C-Sharp-HelloWorld.deps.json
+C:\Users\cschmitz\Documents\cschmitz_Dokumente\Diverses\C-Sharp\C-Sharp-HelloWorld\C-Sharp-HelloWorld\bin\Debug\netcoreapp2.1\C-Sharp-HelloWorld.runtimeconfig.json
+C:\Users\cschmitz\Documents\cschmitz_Dokumente\Diverses\C-Sharp\C-Sharp-HelloWorld\C-Sharp-HelloWorld\bin\Debug\netcoreapp2.1\C-Sharp-HelloWorld.runtimeconfig.dev.json
+C:\Users\cschmitz\Documents\cschmitz_Dokumente\Diverses\C-Sharp\C-Sharp-HelloWorld\C-Sharp-HelloWorld\bin\Debug\netcoreapp2.1\C-Sharp-HelloWorld.dll
+C:\Users\cschmitz\Documents\cschmitz_Dokumente\Diverses\C-Sharp\C-Sharp-HelloWorld\C-Sharp-HelloWorld\bin\Debug\netcoreapp2.1\C-Sharp-HelloWorld.pdb
+C:\Users\cschmitz\Documents\cschmitz_Dokumente\Diverses\C-Sharp\C-Sharp-HelloWorld\C-Sharp-HelloWorld\obj\Debug\netcoreapp2.1\C-Sharp-HelloWorld.csprojAssemblyReference.cache
+C:\Users\cschmitz\Documents\cschmitz_Dokumente\Diverses\C-Sharp\C-Sharp-HelloWorld\C-Sharp-HelloWorld\obj\Debug\netcoreapp2.1\C-Sharp-HelloWorld.csproj.CoreCompileInputs.cache
+C:\Users\cschmitz\Documents\cschmitz_Dokumente\Diverses\C-Sharp\C-Sharp-HelloWorld\C-Sharp-HelloWorld\obj\Debug\netcoreapp2.1\C-Sharp-HelloWorld.AssemblyInfoInputs.cache
+C:\Users\cschmitz\Documents\cschmitz_Dokumente\Diverses\C-Sharp\C-Sharp-HelloWorld\C-Sharp-HelloWorld\obj\Debug\netcoreapp2.1\C-Sharp-HelloWorld.AssemblyInfo.cs
+C:\Users\cschmitz\Documents\cschmitz_Dokumente\Diverses\C-Sharp\C-Sharp-HelloWorld\C-Sharp-HelloWorld\obj\Debug\netcoreapp2.1\C-Sharp-HelloWorld.dll
+C:\Users\cschmitz\Documents\cschmitz_Dokumente\Diverses\C-Sharp\C-Sharp-HelloWorld\C-Sharp-HelloWorld\obj\Debug\netcoreapp2.1\C-Sharp-HelloWorld.pdb
