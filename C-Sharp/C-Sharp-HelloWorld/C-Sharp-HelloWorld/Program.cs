@@ -309,11 +309,11 @@ namespace C_Sharp_HelloWorld
     {
         static void Main(string[] args)
         {
-            int population = 400;
-            string[] parties = {"A ", "B "};
+            int population = 900;
+            string[] parties = {"A ", "B ", "C "};
             System.ConsoleColor[] colors = { ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Blue};
-            int sleepSpeed = 10;
-            int outputRuns = 5000;
+            int sleepSpeed = 200;
+            int outputRuns = 10000;
             //Population, Array der Partein, Modus des Personen arrays, Pause zwischen den Outputs, nach wie vielen Runs Ausgegeben werden soll, Farben der PArtein, Farbmodus
             GameLogic game = new GameLogic(population, parties, 0, sleepSpeed, outputRuns, colors, 1);
             game.gameLoop();
