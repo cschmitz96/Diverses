@@ -6,9 +6,9 @@
 class Question
 {
 public:
-    Question(std::string new_id, std::string new_question, std::string a, std::string b, std::string c, std::string d, std::string correct);
+    Question(std::string new_id, std::string new_question, std::string a, std::string b, std::string c, std::string d, char correct);
 
-    void setQuestion(std::string new_id, std::string new_question, std::string a, std::string b, std::string c, std::string d, std::string correct);
+    void setQuestion(std::string new_id, std::string new_question, std::string a, std::string b, std::string c, std::string d, char correct);
     void printQuestion();
 
     std::string id;
@@ -17,7 +17,7 @@ public:
     std::string answereB;
     std::string answereC;
     std::string answereD;
-    std::string correctAnswere;
+    char correctAnswere;
 };
 
 #endif // QUESTION_H

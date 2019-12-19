@@ -2,11 +2,11 @@
 
 #include "question.h"
 
-Question::Question(std::string new_id, std::string new_question, std::string a, std::string b, std::string c, std::string d, std::string correct)
+Question::Question(std::string new_id, std::string new_question, std::string a, std::string b, std::string c, std::string d, char correct)
 {
     setQuestion( new_id, new_question, a, b, c, d, correct);
 }
-void Question::setQuestion(std::string new_id, std::string new_question, std::string a, std::string b, std::string c, std::string d, std::string correct)
+void Question::setQuestion(std::string new_id, std::string new_question, std::string a, std::string b, std::string c, std::string d, char correct)
 {
     id = new_id;
     question = new_question;
